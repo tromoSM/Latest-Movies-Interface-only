@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search by Brand</title>
+  
+  <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            transition: background-color 0.5s, color 0.5s;
+        }
+
+        .light-mode {
+            background-color: #e9ecef;
+            color: #333;
+        }
+
+        header {
+            background-color: #1a1a1a;
+            color: #00bcd4;
+            padding: 20px;
+            text-align: center;
+            transition: background-color 0.3s ease-in-out, transform 0.3s ease;
+            position: relative;
+        }
+        
+        header.light-mode {
+            background-color: #e6e6e6;
+            color: #333;
+            border: #000000ef;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.123);
+        }
+
+        .avenger a {
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+        }
+
+        .avenger a:hover {
+            color: rgb(54, 165, 255);
+            transition: 0.5s;
+        }
+
+        header:hover {
+            background-color: #222;
+        }
+
+        header:hover.light-mode {
+            background-color: #3ecff3;
+            box-shadow: 0 4px 20px rgba(1, 225, 255, 0.671);
+        }
+
+        h1, p {
+            transition: color 1.5s;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .avengers {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .avenger {
+            transition: box-shadow 0.3s ease;
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+            padding: 15px;
+            width: 220px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .avenger:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(0, 188, 212, 0.3);
+        }
+        .avenger.light-mode:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 30px rgb(1, 85, 124);
+        }
+        .avenger img {
+            max-width: 100%;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .avenger:hover img {
+            transform: scale(1.1);
+        }
+
+        h2 {
+            color: #00bcd4;
+            margin: 10px 0;
+            transition: color 0.5s;
+        }
+
+        .light-mode-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #00ccff;
+            font-size: 1.5rem;
+            transition: color 0.6s ease;
+        }
+
+        .light-mode-toggle.light-mode {
+            color: #ffffff;
+        }
+
+        .light-mode-toggle:hover {
+            color: #ffffff;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            padding: 15px;
+            border-radius: 5px;
+            z-index: 1000;
+            transition: opacity 0.3s ease;
+            display: none; /* Initially hidden */
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .show {
+            display: block;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <button class="light-mode-toggle" id="toggle-button">&#9728;</button>
+        <h1>SEARCH BY BRAND</h1>
+        <p>Search by specific movie studios</p>
+        <p>ETC- <span style="color: red;">MARVEL STUDIOS, DC</span></p>
+    </header>
+    <div style="border-top: 2px solid #00bcd4; margin: 20px 0;"></div>
+
+    <main>
+        <section class="avengers" id="avengers">
+            <a href="marvel.html" class="avenger">
+                <img src="f.png" alt="Marvel Studios">
+                <h2>MARVEL STUDIOS</h2>
+                <p>Mostly known for their superhero movies and action movies based on "MARVEL COMICS"</p>
+            </a>
+            <a href="dc.html" class="avenger">
+                <img src="Picture3.png" alt="DC Studios">
+                <h2>DC STUDIOS</h2>
+                <p>Known for producing movies based on "DC COMICS" and superhero movies</p>
+            </a>
+            <a href="disney.html" class="avenger" id="disney-card">
+                <img src="d.png" alt="Walt Disney">
+                <h2>WALT DISNEY</h2>
+                <p>Mostly known for animated movies and live-action movies, especially popular among children.</p>
+            </a>
+            <a href="warner.html" class="avenger">
+                <img src="png-transparent-logo-burbank-warner-bros-film-television-various-comics-television-company-text.png" alt="Warner Bros">
+                <h2>WARNER BROS.</h2>
+                <p>Known for fantasy-based movies and animated movies among the wide range of ages</p>
+            </a>
+            <a href="twentieth.html" class="avenger">
+                <img src="png-transparent-20th-century-fox-home-entertainment-logo-fox-searchlight-s-century-television-text-orange-thumbnail.png" alt="20th Century Studios">
+                <h2>20TH CENTURY STUDIOS</h2>
+                <p>Known for classic movies and fantasy-based movies that they made with Disney.</p>
+            </a>
+        </section>
+
+        <div id="notification" class="notification hidden">
+            <p>Click the card to watch movies of the brand you choose</p>
+            <button onclick="hideNotification()">✖</button>
+        </div>
+    </main>
+
+    <script>
+        const toggleButton = document.getElementById('toggle-button');
+        const body = document.body;
+        const header = document.getElementById('header');
+        const avengers = document.querySelectorAll('.avenger');
+
+        toggleButton.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            header.classList.toggle('light-mode');
+            avengers.forEach(avenger => {
+                avenger.classList.toggle('light-mode');
+            });
+        });
+
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.querySelector('p').innerText = message;
+            notification.classList.remove('hidden');
+            notification.classList.add('show');
+
+            setTimeout(() => {
+                hideNotification();
+            }, 5000);
+        }
+
+        function hideNotification() {
+            const notification = document.getElementById('notification');
+            notification.classList.remove('show');
+            notification.classList.add('hidden');
+        }
+
+        // Show notification 2 minutes after page load
+        window.onload = function() {
+            setTimeout(() => {
+                showNotification('This is your notification after 2 minutes!');
+            }, 120000); // 2 minutes
+        };
+    </script>
+</body>
+</html>

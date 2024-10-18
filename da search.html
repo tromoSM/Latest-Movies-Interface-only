@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Da Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+        }
+
+        li {
+            flex: 1;
+        }
+
+        li a {
+            display: block;
+            color: #333;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        li a:hover {
+            background-color: #9990fc;
+            color: #ffffff;
+        }
+
+        .active {
+            background-color: #9543ff;
+            color: white;
+        }
+
+        li:not(:last-child) {
+            border-right: 0px solid #e0e0e0;
+            font: arial;
+        }
+
+        li:last-child {
+            border-right: none;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .search-input {
+            padding: 10px 15px;
+            border: 2px solid #C0C0C0;
+            border-radius: 25px 0 0 25px;
+            font-size: 16px;
+            width: 100%;
+            max-width: 400px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: #0078D7;
+        }
+
+        .search-button {
+            background-color: #008cff;
+            border: none;
+            border-radius: 0 25px 25px 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 43px;
+            padding: 0;
+            width: 50px;
+            transition: transform 0.3s;
+        }
+
+        .search-button:hover {
+            background-color: #005a9e;
+            transform: scale(1.1);
+        }
+
+        .results {
+            list-style-type: none;
+            padding: 0;
+            border: 1px solid #C0C0C0;
+            border-radius: 5px;
+            overflow-y: auto;
+            background-color: white;
+            margin-top: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 400px;
+            transition: width 0.3s;
+        }
+
+        .results li {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .results li:hover {
+            background-color: #7667ff2d;
+        }
+
+        h1 {
+            text-align: center;
+            max-width: 600px;
+            margin: 20px auto;
+            font-weight: 400;
+            color: #333;
+        }
+
+        .availability {
+            margin: 35px auto;
+            max-width: 320px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 2%;
+        }
+
+        .availability li {
+            font-size: 16px;
+            margin: 5px;
+        }
+
+        footer {
+            background-color: #986cff;
+            color: #ffffff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 0;
+        }
+
+        .footer-links li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        .footer-links a {
+            color: #976aff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+        }
+
+        .glow-purple {
+            box-shadow: 0 0 30px rgba(149, 67, 255, 0.808);
+        }
+
+        .glow-red {
+            box-shadow: 0 0 40px rgba(255, 0, 0, 0.733);
+        }
+    </style>
+    <script>
+        const data = [
+            "Avengers:Endgame (2019)",
+            "Missing (2023)",
+            "Despicable Me 4 (2024)",
+            "Inside Out 2 (2024)",
+            "Space Cadet (2024)",
+            "Fly Me to the Moon (2024)",
+            "little Women (2019)",
+            "Uncharted (2021)",
+            "The Garfield Movie (2024)",
+            "IF(2024)",
+            "Avengers:Age Of Ultron",
+            "Cheaper By Dozen(2022)"
+        ];
+
+        function performSearch() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const resultsContainer = document.getElementById('results');
+            const searchInput = document.getElementById('search-input');
+
+            // Clear previous results
+            resultsContainer.innerHTML = '';
+
+            // Remove previous glow effects
+            searchInput.classList.remove('glow-purple', 'glow-red');
+
+            if (query) {
+                const filteredResults = data.filter(item => item.toLowerCase().includes(query));
+
+                filteredResults.forEach(item => {
+                    const li = document.createElement('li');
+                    li.textContent = item;
+                    resultsContainer.appendChild(li);
+                });
+
+                if (filteredResults.length === 0) {
+                    const li = document.createElement('li');
+                    li.textContent = "No results found.";
+                    resultsContainer.appendChild(li);
+                    // Add red glow if no results found
+                    searchInput.classList.add('glow-red');
+                } else {
+                    // Add purple glow if results found
+                    searchInput.classList.add('glow-purple');
+
+                    // Adjust width based on number of results
+                    if (filteredResults.length > 2) {
+                        resultsContainer.style.width = '600px'; // Expand width for more than 2 results
+                    } else {
+                        resultsContainer.style.width = '400px'; // Default width
+                    }
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('search-input').addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    performSearch();
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <ul>
+        <li><a href="latest movies ai copy.html">Latest Movies</a></li>
+        <li><a href="movie reviews.html">Movie Reviews</a></li>
+        <li><a class="active" href="da search.html">Browse Movies</a></li>
+        <li><a href="#about">Sign in</a></li>
+    </ul>
+
+    <div class="search-container">
+        <input type="text" id="search-input" class="search-input" placeholder="Search...">
+        <button class="search-button" onclick="performSearch()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="18px" height="18px">
+                <path d="M10.5 0C4.699 0 0 4.699 0 10.5S4.699 21 10.5 21c2.653 0 5.06-1.015 6.859-2.686l5.329 5.329 1.414-1.414-5.329-5.329C20.485 15.11 21 12.837 21 10.5 21 4.699 16.301 0 10.5 0zM10.5 19C5.805 19 2 15.195 2 10.5S5.805 2 10.5 2 19 5.805 19 10.5 15.195 19 10.5 19z"/>
+            </svg>
+        </button>
+        
+
+        </button>
+    </div>
+    
+    <ul class="results" id="results"></ul>
+
+    <h1>Most Searched Movies</h1>
+
+    <ul class="availability">
+        <li>Avengers: Endgame (2019) - <span style="color: green;">Available</span></li>
+        <li>Missing (2023) - <span style="color: red;">Not Available</span></li>
+        <li>Despicable Me 4 (2024) - <span style="color: red;">Not Available</span></li>
+        <li>Inside Out 2 (2024) - <span style="color: red;">Not Available</span></li>
+        <li>Space Cadet (2024) - <span style="color: red;">Not Available</span></li>
+        <li>Fly Me to the Moon - <span style="color: red;">Not Available</span></li>
+    </ul>
+
+    <footer>
+        <div class="footer-content">
+            <p hidden>&copy; 2023 Movie Site. All rights reserved.</p>
+            <ul class="footer-links">
+                <li><a href="privacy policy.html">Privacy Policy</a></li>
+                <li><a href="terms of service.html">Terms of Service</a></li>
+                <li><a href="contact us.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>

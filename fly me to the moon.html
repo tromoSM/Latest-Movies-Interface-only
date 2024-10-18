@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Loading Button</title>
+</head>
+<body>
+    <button class="loading-button">
+        <span class="loader"></span>
+        Submit
+    </button>
+</body>
+</html>
+<style>
+    body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.loading-button {
+    position: relative;
+    padding: 10px 20px;
+    background-color: #e0b3f0; /* Light purple background */
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.loading-button .loader {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #fff;
+    border-top: 3px solid #d1a6e2; /* Light purple for the loading effect */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateY(-30px);
+    display: none; /* Hidden by default */
+}
+
+.loading-button.loading .loader {
+    display: block; /* Show the loader when loading */
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+</style>
+<script>
+    document.querySelector('.loading-button').addEventListener('click', function() {
+    this.classList.add('loading');
+    
+    // Simulate loading for 2 seconds
+    setTimeout(() => {
+        this.classList.remove('loading');
+    }, 2000);
+});
+
+</script>

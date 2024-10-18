@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Development Notification</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <button id="devButton">Fly Me To The Moon</button>
+        <div id="message" class="hidden">This function is still developing.<br>-tromoSM</div>
+    </div>
+<br>
+    <script src="script.js"></script>
+</body>
+</html>
+<style>
+    body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    text-align: center;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 16px;
+    color: white;
+    background-color: #773dff; /* Main color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+button:hover {
+    background-color: #5e2bc2; /* Darker shade on hover */
+    transform: scale(1.05); /* Slight scale effect */
+}
+
+#message {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #333;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.hidden {
+    display: none; /* Hide message initially */
+}
+
+</style>
+<script>
+    document.getElementById('devButton').addEventListener('click', function() {
+    const message = document.getElementById('message');
+    message.classList.remove('hidden'); // Show the message
+    message.style.opacity = 1; // Fade in the message
+});
+</script><br><br><br><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>not funny</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+</style>
+</html>
